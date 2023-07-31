@@ -13,6 +13,8 @@ There are two main sections of code:
     - Frame batches of 32, 64, 128 were tested
     *More details can be found in the actual code itself. Refer to Inference Model.ipynb
 
+Further investigation and manipulation of the YOLOv7 algorithm is planned. Due to time and resource constraints, will not be looking further into it for now.
+
 2. The Feedback Algorithm
 - The Feedback Algorithm will not use a ML-based approach, instead, will utilize the keypoints drawn by YOLOv7 to compare angles and relative positioning between joints.
   - Correct joint positioning will be hard coded, with an acceptable and unacceptable range.
