@@ -19,5 +19,4 @@ Further investigation and manipulation of the YOLOv7 algorithm is planned. Due t
 - The Feedback Algorithm will not use a ML-based approach, instead, will utilize the keypoints drawn by YOLOv7 to compare angles and relative positioning between joints.
   - Correct joint positioning will be hard coded, with an acceptable and unacceptable range.
 
-Contact me at:
-jonsouyang@gmail.com
+
