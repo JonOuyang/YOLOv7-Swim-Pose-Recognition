@@ -221,7 +221,7 @@ model = keras.Sequential([
 
 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-
-###75% no conv
+###75% no conv, adam(3e-6)
 model = keras.Sequential([
         keras.Input(shape=(32,12,3)),
         layers.Dense(50, activation='relu'),
