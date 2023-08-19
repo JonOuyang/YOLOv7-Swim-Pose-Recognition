@@ -217,3 +217,15 @@ model = keras.Sequential([
         layers.Flatten(), layers.Dropout(0.3),
         layers.Dense(2, activation="softmax"),
     ]) 
+
+
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-
+###75% no conv
+model = keras.Sequential([
+        keras.Input(shape=(32,12,3)),
+        layers.Dense(50, activation='relu'),
+        layers.Dense(50, activation='relu'),
+        layers.Flatten(),
+        layers.Dense(2, activation="softmax"),
+    ])
