@@ -198,3 +198,22 @@ model = keras.Sequential([
         layers.Flatten(), layers.Dropout(0.3),
         layers.Dense(2, activation="softmax"),
     ]) #65% peak fld #4
+
+###40-65%, unknown why it doesnt work, main part is large dense layer between convs
+model = keras.Sequential([
+        keras.Input(shape=(32,12,3)),
+        layers.ZeroPadding2D(padding=(6,6)),
+        layers.Conv2D(200, (6, 6), activation = 'relu'),
+        layers.BatchNormalization(),
+        layers.Dropout(0.2),
+        layers.Dense(150, activation='relu'),
+        layers.Conv2D(200, (6, 6), activation = 'relu'),
+        layers.BatchNormalization(),
+        layers.Dropout(0.2),
+        layers.Dense(95, activation='relu', kernel_regularizer=l2(0.01)),
+        layers.Dense(80, activation='relu', kernel_regularizer=l2(0.01)),
+        
+        layers.MaxPooling2D(pool_size=(2, 2)),
+        layers.Flatten(), layers.Dropout(0.3),
+        layers.Dense(2, activation="softmax"),
+    ]) 
