@@ -1,0 +1,182 @@
+###BASE RESNET MODEL
+def relu_bn(inputs: Tensor) -> Tensor:
+    
+    relu = ReLU()(inputs)
+    bn = BatchNormalization()(relu)
+    #bn = ReLU()(inputs)
+    return bn
+
+def residual_block(x: Tensor, downsample: bool, filters: int, kernel_size: int = 3) -> Tensor:
+    y = Conv2D(kernel_size=kernel_size,
+               strides= (1 if not downsample else 2),
+               filters=filters,
+               padding="same")(x)
+    y = relu_bn(y)
+    y = Conv2D(kernel_size=kernel_size,
+               strides=1,
+               filters=filters,
+               padding="same")(y)
+
+    if downsample:
+        x = Conv2D(kernel_size=1,
+                   strides=2,
+                   filters=filters,
+                   padding="same")(x)
+    #y = Dropout(0.4)(y)
+    out = Add()([x, y])
+    out = relu_bn(out)
+    return out
+
+def create_res_net():
+    
+    inputs = Input(shape=(32, 12, 3))
+    num_filters = 64
+    
+    t = BatchNormalization()(inputs)
+    #k_s, 4, 4, stride 2
+    t = Conv2D(kernel_size=4,
+               strides=1,
+               filters=num_filters,
+               padding="same")(t)
+    #kernel_regularizer=l2(0.01)
+    #ernel_regularizer=l2(0.001)
+    t = relu_bn(t)
+    
+    #2, 4, 4, 2
+    #num_blocks_list = [2, 5, 5, 2]
+    #enhanced: 5, 9, 9, 5
+    num_blocks_list = [2, 5, 5, 2]
+    for i in range(len(num_blocks_list)):
+        num_blocks = num_blocks_list[i]
+        for j in range(num_blocks):
+            t = residual_block(t, downsample=(j==0 and i!=0), filters=num_filters)
+        num_filters*=2
+    
+    t = AveragePooling2D(2)(t)
+    #t = MaxPooling2D(pool_size=(2, 2))(t)
+    t = Flatten()(t)
+    #p = Dense(32, activation='relu')(t)
+    outputs = Dense(2, activation='softmax')(t)
+    
+    model = Model(inputs, outputs)
+
+    """model.compile(
+        #optimizer = Adam(learning_rate=0.0001),
+        #optimizer = Adam(learning_rate=4e-7),
+        optimizer=Adam(learning_rate=1e-7),
+        #optimizer='adam',
+        loss='categorical_crossentropy',
+        metrics=['categorical_accuracy']
+    )"""
+
+    model.compile(
+      optimizer = Adam(learning_rate=4e-6),
+      #optimizer = 'sgd',
+      loss='categorical_crossentropy',
+      metrics=[tf.keras.metrics.PrecisionAtRecall(recall=0.8)]
+    )
+
+
+###Experimental test model 1
+"""model = keras.Sequential([
+        keras.Input(shape=(32,12,3)),
+        layers.Conv2D(100, (3, 3), activation = 'relu'),
+        layers.BatchNormalization(),
+        layers.Dropout(0.1),
+        layers.Conv2D(120, (3, 3), activation = 'relu'),
+        layers.BatchNormalization(),
+        layers.Dropout(0.1),
+        layers.Conv2D(120, (3, 3), activation = 'relu'),
+        layers.BatchNormalization(),
+        layers.Dropout(0.1),
+        layers.Conv2D(120, (3, 3), activation = 'relu'),
+        layers.BatchNormalization(),
+        layers.Dropout(0.1),
+        layers.Conv2D(100, (3, 3), activation = 'relu'),
+        layers.BatchNormalization(),
+        layers.Dropout(0.1),
+        layers.MaxPooling2D(pool_size=(2, 2)),
+        layers.Flatten(), layers.Dropout(0.4),
+        layers.Dense(4, activation="softmax"),
+    ])"""
+###42% accuracy with problematic classes doubled, 64 batch
+"""model = keras.Sequential([
+        keras.Input(shape=(32,12,3)),
+        layers.ZeroPadding2D(padding=(2,2)),
+        layers.Conv2D(200, (3, 3), activation = 'relu'),
+        layers.BatchNormalization(),
+        layers.Dropout(0.1),
+        layers.Conv2D(200, (3, 3), activation = 'relu'),
+        layers.BatchNormalization(),
+        layers.Dropout(0.1),
+        layers.Conv2D(200, (3, 3), activation = 'relu'),
+        layers.BatchNormalization(),
+        layers.Dropout(0.1),
+        layers.Conv2D(200, (3, 3), activation = 'relu'),
+        layers.BatchNormalization(),
+        layers.Dropout(0.1),
+        layers.MaxPooling2D(pool_size=(2, 2)),
+        layers.Flatten(), layers.Dropout(0.4),
+        #layers.Dense(16, activation='relu'),
+        layers.Dense(4, activation="softmax"),
+    ]) -> 42% acc, c0&1 doubled, c64"""
+###40% accuracy consistently, problematic classes doubled, 64 batch
+"""model = keras.Sequential([
+        keras.Input(shape=(32,12,3)),
+        layers.ZeroPadding2D(padding=(2,2)),
+        layers.Conv2D(500, (5, 5), activation = 'relu'),
+        layers.BatchNormalization(),
+        layers.Dropout(0.05),
+        layers.Conv2D(500, (5, 5), activation = 'relu'),
+        layers.BatchNormalization(),
+        layers.Dropout(0.05),
+        layers.Conv2D(500, (5, 5), activation = 'relu'),
+        layers.BatchNormalization(),
+        layers.Dropout(0.1),
+        layers.MaxPooling2D(pool_size=(2, 2)),
+        layers.Flatten(), layers.Dropout(0.3),
+        layers.Dense(4, activation="softmax"),
+    ]) -> 40% acc, c0&1 doubled, c64"""
+###60% accuracy on binary classification between free and back, 32 batch
+"""model = keras.Sequential([
+        keras.Input(shape=(32,12,3)),
+        layers.ZeroPadding2D(padding=(6,6)),
+        layers.Conv2D(200, (5, 5), activation = 'relu'),
+        layers.BatchNormalization(),
+        layers.Dropout(0.2),
+        layers.Conv2D(200, (5, 5), activation = 'relu'),
+        layers.BatchNormalization(),
+        layers.Dropout(0.2),
+        layers.MaxPooling2D(pool_size=(2, 2)),
+        layers.Flatten(), layers.Dropout(0.3),
+        layers.Dense(2, activation="softmax"),
+    ]) -> 60% acc, free/back, c32, """
+###65% accuracy on binary classification between free and back, 32 batch
+model = keras.Sequential([
+        keras.Input(shape=(32,12,3)),
+        layers.ZeroPadding2D(padding=(6,6)),
+        layers.Conv2D(200, (6, 6), activation = 'relu'),
+        layers.BatchNormalization(),
+        layers.Dropout(0.2),
+        layers.Conv2D(200, (6, 6), activation = 'relu'),
+        layers.BatchNormalization(),
+        layers.Dropout(0.2),
+        layers.Dense(40, activation='relu'),
+        layers.MaxPooling2D(pool_size=(2, 2)),
+        layers.Flatten(), layers.Dropout(0.3),
+        layers.Dense(2, activation="softmax"),
+    ]) #65% peak fld #4
+
+###.compile
+#model.compile(loss="categorical_crossentropy", optimizer = 'sgd', metrics=[tf.keras.metrics.AUC()])
+#model.compile(loss="categorical_crossentropy", optimizer = 'sgd', metrics=[tf.keras.metrics.Precision()])
+#model.compile(loss="categorical_crossentropy", optimizer = 'sgd', metrics=[tf.keras.metrics.Recall()]) <- overfits severely
+#model.compile(loss="categorical_crossentropy", optimizer = 'sgd', metrics=[tf.keras.metrics.TruePositives()])
+#model.compile(loss="categorical_crossentropy", optimizer = 'sgd', metrics=[tf.keras.metrics.FalsePositives()])
+
+#Working
+#model.compile(loss="categorical_crossentropy", optimizer = Adam(learning_rate=3e-5), metrics=[tf.keras.metrics.PrecisionAtRecall(recall=0.8)])
+
+model.compile(loss="categorical_crossentropy", optimizer = Adam(learning_rate=3e-6), metrics="accuracy")
+#model.compile(loss="categorical_crossentropy", optimizer = 'sgd', metrics=[tf.keras.metrics.SensitivityAtSpecificity(0.8)])
+#model.compile(loss="categorical_crossentropy", optimizer = 'sgd', metrics=[tf.keras.metrics.SpecificityAtSensitivity(0.8)])
