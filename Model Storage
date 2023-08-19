@@ -180,3 +180,21 @@ model = keras.Sequential([
 model.compile(loss="categorical_crossentropy", optimizer = Adam(learning_rate=3e-6), metrics="accuracy")
 #model.compile(loss="categorical_crossentropy", optimizer = 'sgd', metrics=[tf.keras.metrics.SensitivityAtSpecificity(0.8)])
 #model.compile(loss="categorical_crossentropy", optimizer = 'sgd', metrics=[tf.keras.metrics.SpecificityAtSensitivity(0.8)])
+
+###65% backstroke bias
+model = keras.Sequential([
+        keras.Input(shape=(32,12,3)),
+        layers.ZeroPadding2D(padding=(6,6)),
+        layers.Conv2D(200, (6, 6), activation = 'relu'),
+        layers.BatchNormalization(),
+        layers.Dropout(0.2),
+        layers.Conv2D(200, (6, 6), activation = 'relu'),
+        layers.BatchNormalization(),
+        layers.Dropout(0.2),
+        layers.Dense(95, activation='relu'),
+        layers.Dense(80, activation='relu'),
+        
+        layers.MaxPooling2D(pool_size=(2, 2)),
+        layers.Flatten(), layers.Dropout(0.3),
+        layers.Dense(2, activation="softmax"),
+    ]) #65% peak fld #4
