@@ -1,3 +1,68 @@
+###Training with K-Folds
+# Define the number of folds (k)
+#model = create_res_net()
+#model = tf.keras.models.load_model('testModel65')
+
+for i in range(1):
+
+    k = 10  # For example, using 5-fold cross-validation
+
+    # Create a KFold object
+    kf = KFold(n_splits=k, shuffle=True)
+
+    # Initialize lists to store training and validation results for each fold
+
+    #model.summary()
+
+    # Loop through each fold
+    for fold, (train_index, val_index) in enumerate(kf.split(x_test)):
+        print(f"Training fold {fold + 1}")
+        x_train_fold, x_val_fold = x_train[train_index], x_train[val_index]
+        y_train_fold, y_val_fold = y_train[train_index], y_train[val_index]
+
+        """class_weights = {0: 1,
+                        1: 10.,
+                        2: 10,
+                        3: 1}"""
+        """ResNet
+        class_weights = {0: 0.6,
+                         1: 1.2,
+                         2: 1.4,
+                         3: 1.,
+                         4: 1.2,
+                         5: 0.9,}"""
+        
+        model_checkpoint = ModelCheckpoint(filepath = f'model_{fold}.h5', monitor='val_loss')
+
+        
+        # Train the model on this fold
+        history = model.fit(
+            x=x_train_fold,
+            y=y_train_fold,
+            epochs=20,
+            verbose=0,
+            batch_size=32,
+            validation_data=(x_val_fold, y_val_fold),
+            #class_weight=class_weights
+            #validation_data=(x_test, y_test)
+            callbacks=[model_checkpoint]
+        )
+        model.evaluate(x_test, y_test, verbose=1)
+        predicted_labels=np.argmax(model.predict(xt), axis=1)
+        tl = np.argmax(yt, axis=1)
+        #tl = ytR
+        confusion_mat = confusion_matrix(tl, predicted_labels)
+        print(confusion_mat)
+        print(f'Model Accuracy based on testing data: {(np.trace(confusion_mat))/np.sum(confusion_mat)}')
+        
+        # Store the training and validation results for this fold
+
+    # After all folds are done, you can analyze the performance using the stored lists.
+    # For example, you can compute the average and standard deviation of train and validation metrics.
+
+
+
+
 ###BASE RESNET MODEL
 def relu_bn(inputs: Tensor) -> Tensor:
     
