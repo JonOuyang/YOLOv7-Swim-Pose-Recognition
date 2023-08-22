@@ -294,3 +294,4 @@ model = keras.Sequential([
         layers.Flatten(),
         layers.Dense(2, activation="softmax"),
     ])
+*redo model 78?
