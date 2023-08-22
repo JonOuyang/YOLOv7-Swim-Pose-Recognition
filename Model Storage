@@ -295,3 +295,39 @@ model = keras.Sequential([
         layers.Dense(2, activation="softmax"),
     ])
 *redo model 78?
+
+
+#Fly vs Breast, utilizing LEAKYRELU, 65% 
+[[43  9]
+ [25 20]]
+model = keras.Sequential([
+        keras.Input(shape=(32,12,3)),
+        layers.ZeroPadding2D(padding=(5,5)),
+        layers.Conv2D(60, (2, 2)),
+        layers.LeakyReLU(alpha=0.01),
+        layers.BatchNormalization(),
+        layers.Dropout(0.2),
+        layers.Conv2D(65, (2, 2)),
+        layers.LeakyReLU(alpha=0.01),
+        layers.BatchNormalization(),
+        layers.Dropout(0.2),
+        layers.Conv2D(70, (4, 4)),
+        layers.LeakyReLU(alpha=0.01),
+        layers.BatchNormalization(),
+        layers.Dropout(0.2),
+        layers.Conv2D(80, (4, 4)),
+        layers.LeakyReLU(alpha=0.01),
+        layers.BatchNormalization(),
+        layers.Dropout(0.2),
+        layers.Conv2D(90, (5, 5)),
+        layers.LeakyReLU(alpha=0.01),
+        layers.BatchNormalization(),
+        layers.Dropout(0.2),
+        layers.Conv2D(100, (5, 5)),
+        layers.LeakyReLU(alpha=0.01),
+        layers.BatchNormalization(),
+        layers.Dropout(0.2),
+        layers.MaxPooling2D(pool_size=(2, 2)),
+        layers.Flatten(), layers.Dropout(0.4),
+        layers.Dense(2, activation="softmax"),
+    ])
