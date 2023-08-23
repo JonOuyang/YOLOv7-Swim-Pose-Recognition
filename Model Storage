@@ -140,7 +140,7 @@ def create_res_net():
       loss='categorical_crossentropy',
       metrics=[tf.keras.metrics.PrecisionAtRecall(recall=0.8)]
     )
-
+    return model
 
 ###Experimental test model 1
 """model = keras.Sequential([
