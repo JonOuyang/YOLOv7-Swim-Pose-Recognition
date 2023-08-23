@@ -287,6 +287,7 @@ model = keras.Sequential([
 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-
 ###75% no conv, adam(3e-6)
+70 SERIES
 model = keras.Sequential([
         keras.Input(shape=(32,12,3)),
         layers.Dense(50, activation='relu'),
@@ -300,6 +301,8 @@ model = keras.Sequential([
 #Fly vs Breast, utilizing LEAKYRELU, 65% 
 [[43  9]
  [25 20]]
+
+73% 80 SERIES
 model = keras.Sequential([
         keras.Input(shape=(32,12,3)),
         layers.ZeroPadding2D(padding=(5,5)),
