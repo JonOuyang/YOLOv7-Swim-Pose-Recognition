@@ -327,7 +327,7 @@ model = keras.Sequential([
         layers.LeakyReLU(alpha=0.01),
         layers.BatchNormalization(),
         layers.Dropout(0.2),
-        layers.MaxPooling2D(pool_size=(2, 2)),
+        layers.MaxPooling2D(pool_size=(3, 3)),
         layers.Flatten(), layers.Dropout(0.4),
         layers.Dense(2, activation="softmax"),
     ])
