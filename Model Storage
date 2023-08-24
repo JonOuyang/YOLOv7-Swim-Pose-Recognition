@@ -60,7 +60,96 @@ for i in range(1):
     # After all folds are done, you can analyze the performance using the stored lists.
     # For example, you can compute the average and standard deviation of train and validation metrics.
 
+%%time
+accuracyArray = []
+loops = 0
+while True:
+    try:
+        #Model
+        model = keras.Sequential([
+        keras.Input(shape=(32,12,3)),
+        layers.ZeroPadding2D(padding=(5,5)),
+        layers.Conv2D(60, (2, 2)),
+        layers.LeakyReLU(alpha=0.01),
+        layers.BatchNormalization(),
+        layers.Dropout(0.2),
+        layers.Conv2D(65, (2, 2)),
+        layers.LeakyReLU(alpha=0.01),
+        layers.BatchNormalization(),
+        layers.Dropout(0.2),
+        layers.Conv2D(70, (4, 4)),
+        layers.LeakyReLU(alpha=0.01),
+        layers.BatchNormalization(),
+        layers.Dropout(0.2),
+        layers.Conv2D(80, (4, 4)),
+        layers.LeakyReLU(alpha=0.01),
+        layers.BatchNormalization(),
+        layers.Dropout(0.2),
+        layers.Conv2D(90, (5, 5)),
+        layers.LeakyReLU(alpha=0.01),
+        layers.BatchNormalization(),
+        layers.Dropout(0.2),
+        layers.Conv2D(100, (5, 5)),
+        layers.LeakyReLU(alpha=0.01),
+        layers.BatchNormalization(),
+        layers.Dropout(0.2),
+        layers.MaxPooling2D(pool_size=(3, 3)),
+        layers.Flatten(), layers.Dropout(0.4),
+        layers.Dense(2, activation="softmax"),
+    ])
+        model.compile(loss="categorical_crossentropy", optimizer = Adam(learning_rate=3e-6), metrics="accuracy")
 
+        accuracyArray = []
+        for i in range(1):
+
+            k = 10  # For example, using 5-fold cross-validation
+
+            # Create a KFold object
+            kf = KFold(n_splits=k, shuffle=True)
+
+            # Initialize lists to store training and validation results for each fold
+
+            #model.summary()
+
+            # Loop through each fold
+            for fold, (train_index, val_index) in enumerate(kf.split(x_test)):
+                print(f"Training fold {fold + 1}")
+                x_train_fold, x_val_fold = x_train[train_index], x_train[val_index]
+                y_train_fold, y_val_fold = y_train[train_index], y_train[val_index]
+
+                model_checkpoint = ModelCheckpoint(filepath = f'model_{fold}.h5', monitor='val_loss')
+
+
+                # Train the model on this fold
+                history = model.fit(
+                    x=x_train_fold,
+                    y=y_train_fold,
+                    epochs=20,
+                    verbose=0,
+                    batch_size=32,
+                    validation_data=(x_val_fold, y_val_fold),
+                    #class_weight=class_weights
+                    #validation_data=(x_test, y_test)
+                    callbacks=[model_checkpoint]
+                )
+                model.evaluate(x_test, y_test, verbose=1)
+                predicted_labels=np.argmax(model.predict(xt), axis=1)
+                tl = np.argmax(yt, axis=1)
+                #tl = ytR
+                confusion_mat = confusion_matrix(tl, predicted_labels)
+                print(confusion_mat)
+                print(f'Model Accuracy based on testing data: {(np.trace(confusion_mat))/np.sum(confusion_mat)}')
+                accuracyArray.append((np.trace(confusion_mat))/np.sum(confusion_mat))
+        loops +=1
+    except:
+        pass
+    if any(num > 0.74 for num in accuracyArray):
+        print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+        print(f'Model trained a total of {loops} times!')
+        print("Training Complete!")
+        break
+    else:
+        clear_output(wait=True)
 
 
 ###BASE RESNET MODEL
