@@ -34,7 +34,76 @@ for i in range(1):
         
         model_checkpoint = ModelCheckpoint(filepath = f'model_{fold}.h5', monitor='val_loss')
 
-        
+        def relu_bn(inputs: Tensor) -> Tensor:
+    
+    relu = layers.LeakyReLU(alpha=0.01)(inputs)
+    bn = BatchNormalization()(relu)
+    return bn
+
+def residual_block(x: Tensor, downsample: bool, filters: int, kernel_size: int = 3) -> Tensor:
+    y = Conv2D(kernel_size=kernel_size,
+               strides= (1 if not downsample else 2),
+               filters=filters,
+               padding="same")(x)
+    y = relu_bn(y)
+    y = Conv2D(kernel_size=kernel_size,
+               strides=1,
+               filters=filters,
+               padding="same")(y)
+
+    if downsample:
+        x = Conv2D(kernel_size=1,
+                   strides=2,
+                   filters=filters,
+                   padding="same")(x)
+    y = Dropout(0.1)(y)
+    out = Add()([x, y])
+    out = relu_bn(out)
+    return out
+
+def create_res_net():
+    
+    inputs = Input(shape=(32, 12, 3))
+    num_filters = 100
+    
+    t = BatchNormalization()(inputs)
+    #k_s, 4, 4, stride 2
+    t = Conv2D(kernel_size=4,
+               strides=1,
+               filters=num_filters,
+               padding="same")(t)
+    kernel_regularizer=l2(0.001)
+    #ernel_regularizer=l2(0.001)
+    t = relu_bn(t)
+    
+    #2, 4, 4, 2
+    #num_blocks_list = [2, 5, 5, 2]
+    #enhanced: 5, 9, 9, 5
+    num_blocks_list = [2, 5, 5, 2]
+    for i in range(len(num_blocks_list)):
+        num_blocks = num_blocks_list[i]
+        for j in range(num_blocks):
+            t = residual_block(t, downsample=(j==0 and i!=0), filters=num_filters)
+        num_filters*=2
+    
+    t = AveragePooling2D(2)(t)
+    #t = MaxPooling2D(pool_size=(2, 2))(t)
+    t = Flatten()(t)
+    #p = Dense(32, activation='relu')(t)
+    outputs = Dense(2, activation='softmax')(t)
+    
+    model = Model(inputs, outputs)
+
+    model.compile(
+        #optimizer = Adam(learning_rate=0.0001),
+        #optimizer = Adam(learning_rate=4e-7),
+        optimizer=Adam(learning_rate=3e-6),
+        #optimizer='adam',
+        loss='categorical_crossentropy',
+        metrics=['categorical_accuracy']
+    )
+    return model
+model = create_res_net()
         # Train the model on this fold
         history = model.fit(
             x=x_train_fold,
@@ -423,3 +492,76 @@ model = keras.Sequential([
         layers.Flatten(), layers.Dropout(0.4),
         layers.Dense(2, activation="softmax"),
     ])
+
+76% 90 series
+
+def relu_bn(inputs: Tensor) -> Tensor:
+    
+    relu = layers.LeakyReLU(alpha=0.01)(inputs)
+    bn = BatchNormalization()(relu)
+    return bn
+
+def residual_block(x: Tensor, downsample: bool, filters: int, kernel_size: int = 3) -> Tensor:
+    y = Conv2D(kernel_size=kernel_size,
+               strides= (1 if not downsample else 2),
+               filters=filters,
+               padding="same")(x)
+    y = relu_bn(y)
+    y = Conv2D(kernel_size=kernel_size,
+               strides=1,
+               filters=filters,
+               padding="same")(y)
+
+    if downsample:
+        x = Conv2D(kernel_size=1,
+                   strides=2,
+                   filters=filters,
+                   padding="same")(x)
+    y = Dropout(0.1)(y)
+    out = Add()([x, y])
+    out = relu_bn(out)
+    return out
+
+def create_res_net():
+    
+    inputs = Input(shape=(32, 12, 3))
+    num_filters = 100
+    
+    t = BatchNormalization()(inputs)
+    #k_s, 4, 4, stride 2
+    t = Conv2D(kernel_size=4,
+               strides=1,
+               filters=num_filters,
+               padding="same")(t)
+    kernel_regularizer=l2(0.001)
+    #ernel_regularizer=l2(0.001)
+    t = relu_bn(t)
+    
+    #2, 4, 4, 2
+    #num_blocks_list = [2, 5, 5, 2]
+    #enhanced: 5, 9, 9, 5
+    num_blocks_list = [2, 5, 5, 2]
+    for i in range(len(num_blocks_list)):
+        num_blocks = num_blocks_list[i]
+        for j in range(num_blocks):
+            t = residual_block(t, downsample=(j==0 and i!=0), filters=num_filters)
+        num_filters*=2
+    
+    t = AveragePooling2D(2)(t)
+    #t = MaxPooling2D(pool_size=(2, 2))(t)
+    t = Flatten()(t)
+    #p = Dense(32, activation='relu')(t)
+    outputs = Dense(2, activation='softmax')(t)
+    
+    model = Model(inputs, outputs)
+
+    model.compile(
+        #optimizer = Adam(learning_rate=0.0001),
+        #optimizer = Adam(learning_rate=4e-7),
+        optimizer=Adam(learning_rate=3e-6),
+        #optimizer='adam',
+        loss='categorical_crossentropy',
+        metrics=['categorical_accuracy']
+    )
+    return model
+model = create_res_net()
