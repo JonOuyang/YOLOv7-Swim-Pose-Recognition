@@ -3,7 +3,7 @@ This project aims to utilize (2023) YOLOv7's new pretrained pose recognition alg
 
 ##### NOTE: In swimming terms, "long axis strokes" refer to Freestyle and Backstroke; "short axis strokes" refer to Butterfly and Breastroke.
 There are two main sections of code:
-## The Recognition Model
+## 1. The Recognition Model
   - As of Summer 2023, several models have been tested:
         - Deep 2D CNNs
         - Deep 3D CNNs
@@ -24,7 +24,7 @@ There are two main sections of code:
    
 Further investigation and manipulation of the YOLOv7 algorithm and new YOLOv8 algorithm is planned. Due to time and resource constraints, will not be looking further into it for now.
 
-## The Feedback Algorithm
+## 2. The Feedback Algorithm
 - The Feedback Algorithm will not use a ML-based approach, instead, will utilize the keypoints drawn by YOLOv7 to compare angles and relative positioning between joints.
   - Correct joint positioning will be hard coded, with an acceptable and unacceptable range.
 
