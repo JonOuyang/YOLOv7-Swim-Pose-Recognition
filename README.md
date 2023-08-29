@@ -21,6 +21,7 @@ There are two main sections of code:
 2. The second layer after the initial long axis vs short axis stroke recognition is 2 separate paths.
      a. The first path is the long axis path, where there is a singular DNN model to differentiate Freestyle vs Backstroke. Voting Ensemble in preliminary testing seemed to have no affect on accuracy. The 
      b. The second path is the short axis path, where there is a Soft Voting Ensemble, where 5 models returns its predictions in the form of confidence level (i.e. [0.7, 0.3] class 0 prediction), and the average confidence level for each class is calculated and the class with the overall highest confidence level is counted as the final guess. Significant improvement in accuracy was recorded.
+3. After classification of stroke, the program will then execute its respective feedback functions, taking in the input as parameter for analysis
    
 Further investigation and manipulation of the YOLOv7 algorithm and new YOLOv8 algorithm is planned. Due to time and resource constraints, will not be looking further into it for now.
 
