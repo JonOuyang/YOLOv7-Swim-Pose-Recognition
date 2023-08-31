@@ -1,0 +1,65 @@
+def convert128(testSkel):
+    global y, nSkel, nLabel
+    y = int(skel.shape[0]/64)-2
+    nSkel = np.empty([y, 128, 17, 2])
+    nLabel = np.empty([y, 1])
+    for i in range(0, y):
+        nSkel[i] = skel[(i*64):(i*64)+128,:,:]
+        nLabel[i] = int(st.mode(label.flatten()[(i*64):(i*64)+128]))
+    print(f'Skeleton data shape: {nSkel.shape}')
+    print(f'Label data shape: {nLabel.shape}')
+
+def convert64(testSkel, testLabel, spSkel, spLabel):
+    global y, nSkel, nLabel
+    c=0
+    print("=======================================================")
+    print(f'original skel shape: {testSkel.shape}')
+    print(f'original label shape: {testLabel.shape}')
+    nSkel = 0
+    nLabel = 0
+    while testSkel.shape[0]%64 != 0:
+        testSkel = np.delete(testSkel, -1, axis=0)
+        testLabel = np.delete(testLabel, -1, axis = 0)
+        c += 1
+    y = int(testSkel.shape[0]/32)-1
+    nSkel = np.empty([y, 64, 12, 2])
+    nLabel = np.empty([y, 1])
+    for i in range(0, y):
+        nSkel[i] = testSkel[(i*32):(i*32)+64,:,:]
+        nLabel[i] = int(st.median(testLabel.flatten()[(i*32):(i*32)+64]))
+    nSkel = nSkel[:100, :, :, :]
+    nLabel = nLabel[:100, :]
+    print(f'new shape (skel): {nSkel.shape}')
+    print(f'new shape (label): {nLabel.shape}')
+    print(f'A total of {c} elements have been removed')
+    np.save(spLabel, nLabel)
+    np.save(spSkel, nSkel)
+    print("=======================================================")
+    #return y, nSkel, nLabel
+
+
+def convertO64(testSkel, testLabel, spSkel, spLabel):
+    global y, nSkel, nLabel
+    c=0
+    print("=======================================================")
+    print(f'original skel shape: {testSkel.shape}')
+    print(f'original label shape: {testLabel.shape}')
+    nSkel = 0
+    nLabel = 0
+    while testSkel.shape[0]%64 != 0:
+        testSkel = np.delete(testSkel, -1, axis=0)
+        testLabel = np.delete(testLabel, -1, axis = 0)
+        c += 1
+    y = int(testSkel.shape[0]/32)-1
+    nSkel = np.empty([y, 64, 12, 2])
+    nLabel = np.empty([y, 1])
+    for i in range(0, y):
+        nSkel[i] = testSkel[(i*32):(i*32)+64,:,:]
+        nLabel[i] = int(st.median(testLabel.flatten()[(i*32):(i*32)+64]))
+    print(f'new shape (skel): {nSkel.shape}')
+    print(f'new shape (label): {nLabel.shape}')
+    print(f'A total of {c} elements have been removed')
+    np.save(spLabel, nLabel)
+    np.save(spSkel, nSkel)
+    print("=======================================================")
+    #return y, nSkel, nLabel
