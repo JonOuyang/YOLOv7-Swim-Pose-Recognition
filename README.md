@@ -4,7 +4,7 @@ This project aims to utilize (2023) YOLOv7's new pretrained pose recognition alg
 ##### NOTE: In swimming terms, "long axis strokes" refer to Freestyle and Backstroke; "short axis strokes" refer to Butterfly and Breastroke.
 There are two main sections of code:
 ## 1. The Recognition Model
-  - As of Summer 2023, several models have been tested:
+  - Three primary model architectures were tested on the initial dataset:
         - Deep 2D CNNs
         - Deep 3D CNNs
         - Dense Neural Networks (DNN)
