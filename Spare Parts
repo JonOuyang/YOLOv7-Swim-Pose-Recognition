@@ -142,3 +142,50 @@ rotated_coordinates = rotateAugment(tx_test, max_angle=-10)
 x_test = np.concatenate((x_test, rotated_coordinates))
 y_test = np.concatenate((y_test, ty_test))
 """
+
+
+"""def stretch(coordinates):
+    #640, 360
+    #384, 288
+    if coordinates[0] > 640 and coordinates[1] > 360:
+        #botton right
+        x = 1280 - 0.5*(1280 - coordinates[0])
+        y = 720 - 0.5*(720 - coordinates[1])
+        return (int(x), int(y))
+    elif coordinates[0] > 640 and coordinates[1] < 360:
+        #top right
+        x = 1280 - 0.5*(1280 - coordinates[0])
+        y = 0.5*coordinates[1]
+        return (int(x), int(y))
+    elif coordinates[0] < 640 and coordinates[1] > 360:
+        #bottom left
+        x = 0.5*coordinates[0]
+        y = 720 - 0.5*(720 - coordinates[1])
+        return (int(x), int(y))
+    elif coordinates[0] < 640 and coordinates[1] < 360:
+        #top left
+        return (coordinates[0]*0.5, coordinates[1]*0.5)
+    else:
+        print("error")"""
+
+
+"""def stretch(coordinates):
+    #640, 360
+    #420, 288
+    if coordinates[0] > 300 and coordinates[1] > 360:
+        #botton right
+        x = 1280 - 0.6*(1280 - coordinates[0])
+        y = 720 - 0.6*(720 - coordinates[1])
+        return (int(x), int(y))
+    elif coordinates[0] > 300 and coordinates[1] < 360:
+        #top right
+        x = 1280 - 0.6*(1280 - coordinates[0])
+        y = 0.6*coordinates[1]
+        return (int(x), int(y))
+    elif coordinates[0] < 300:
+        # left
+        #x = 0.5*coordinates[0]
+        #y = 720 - 0.5*(720 - coordinates[1])
+        return (int(coordinates[0]), int(0.8* coordinates[1]))
+    else:
+        print("error")"""
