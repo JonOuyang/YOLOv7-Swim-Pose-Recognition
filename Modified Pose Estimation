@@ -493,7 +493,7 @@
    "outputs": [],
    "source": [
     "%%time\n",
-    "video = \"C:/Users/jonso/OneDrive/Desktop/Testing Data 2.mp4\"\n",
+    "video = \"\"\n",
     "path = 'skel_test.npy'\n",
     "labelPath = 'label_test.npy'\n",
     "swimPose_train(video, path, labelPath)\n",
@@ -509,7 +509,7 @@
    "outputs": [],
    "source": [
     "%%time\n",
-    "video = \"C:/Users/jonso/OneDrive/Desktop/Free Training Data 2.mp4\"\n",
+    "video = \"\"\n",
     "path = 'Free_Skel_Training2.npy'\n",
     "swimPose_estimate(video, path)\n",
     "#counterclockwise"
@@ -525,7 +525,7 @@
    "outputs": [],
    "source": [
     "%%time\n",
-    "video = \"C:/Users/jonso/OneDrive/Desktop/Fly Training Data 2.mp4\"\n",
+    "video = \"\"\n",
     "path = 'Fly_Skel_Training2.npy'\n",
     "swimPose_estimate(video, path)\n",
     "#counterclockwise"
@@ -539,7 +539,7 @@
    "outputs": [],
    "source": [
     "%%time\n",
-    "video = \"C:/Users/jonso/OneDrive/Desktop/Back Training Data 2.mp4\"\n",
+    "video = \"\"\n",
     "path = 'Back_Skel_Training2.npy'\n",
     "swimPose_estimate(video, path)\n",
     "#counterclockwise"
@@ -553,7 +553,7 @@
    "outputs": [],
    "source": [
     "%%time\n",
-    "video = \"C:/Users/jonso/OneDrive/Desktop/Breast Training Data 2.mp4\"\n",
+    "video = \"\"\n",
     "path = 'Breast_Skel_Training2.npy'\n",
     "swimPose_estimate(video, path)\n",
     "#counterclockwise"
@@ -567,7 +567,7 @@
    "outputs": [],
    "source": [
     "%%time\n",
-    "video = \"C:/Users/jonso/OneDrive/Desktop/Underwater Training Data 2.mp4\"\n",
+    "video = \"\"\n",
     "path = 'Underwater_Skel_Training2.npy'\n",
     "swimPose_estimate(video, path)\n",
     "#counterclockwise"
@@ -581,7 +581,7 @@
    "outputs": [],
    "source": [
     "%%time\n",
-    "video = \"C:/Users/jonso/OneDrive/Desktop/Dive Training Data 2.mp4\"\n",
+    "video = \"\"\n",
     "path = 'Dive_Skel_Training2.npy'\n",
     "swimPose_estimate(video, path)\n",
     "#counterclockwise"
