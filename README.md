@@ -23,10 +23,13 @@ There are two main sections of code:
      b. The second path is the short axis path, where there is a Soft Voting Ensemble, where 5 models returns its predictions in the form of confidence level (i.e. [0.7, 0.3] class 0 prediction), and the average confidence level for each class is calculated and the class with the overall highest confidence level is counted as the final guess. Significant improvement in accuracy was recorded.
 3. After classification of stroke, the program will then execute its respective feedback functions, taking in the input as parameter for analysis
    
-Further investigation and manipulation of the YOLOv7 algorithm and new YOLOv8 algorithm is planned. Due to time and resource constraints, will not be looking further into it for now.
-
 ## 2. The Feedback Algorithm
 - The Feedback Algorithm will not use a ML-based approach, instead, will utilize the keypoints drawn by YOLOv7 to compare angles and relative positioning between joints.
   - Correct joint positioning will be hard coded, with an acceptable and unacceptable range.
 The feedback functions are based on a calculated angle (degrees) between three joint coordinates 
 
+#Submissions
+My work has been submitted to the following:
+- REGENERON Science Talent Search (STS) 2024 [High School Research Competition]
+- 2024 IEEE 6th International Conference on Artificial Intelligence Circuits and Systems (AICAS) [Conference Paper]
+- 2024 IEEE Southwest Symposium on Image Analysis and Interpretation (SSIAI) [Conference Paper]
