@@ -32,6 +32,5 @@ The feedback functions are based on a calculated angle (degrees) between three j
 
 # Submissions
 My work has been submitted to the following:
-- REGENERON Science Talent Search (STS) 2024 [High School Research Competition]
 - 2024 IEEE 6th International Conference on Artificial Intelligence Circuits and Systems (AICAS) [Conference Paper]
 - 2024 IEEE Southwest Symposium on Image Analysis and Interpretation (SSIAI) [Conference Paper]
