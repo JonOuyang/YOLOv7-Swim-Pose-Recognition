@@ -26,7 +26,7 @@ The information is split into groups of 3 numbers.
 15 - left ankle (right for viewer)
 16 - right ankle (left for viewer)
 
-(For this project the model shows significant improvements when the nose, eye, and ear coordinates are removed from consideration)
+(Models displayed significant improvements with feature engineering; when the nose, eye, and ear coordinates are removed from consideration)
 
 0 - left shoulder (right for viewer)
 1 - right shoulder (left for viewer)
