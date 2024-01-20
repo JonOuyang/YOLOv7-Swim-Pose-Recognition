@@ -15,7 +15,7 @@ There are two main sections of code:
     - 3 unique datasets have been created, all with roughly equal divisions in class.
     - The dataset includes 6 classes: Freestyle, Butterfly, Breaststroke, Backstroke, Underwater (Dolphin/Breastroke), and Diving
     - Frame batches of 32, 64, 128 were tested
-    - 12 joint coordinate keypoints are used, all head keypoints are excluded for sake of accuracy. Encountered issues with head keypoints interfering with model accuracies.
+    - 12 joint coordinate keypoints are used, all head keypoints are excluded through feature extraction. Encountered issues with head keypoints interfering with model accuracies.
     *More details can be found in the actual code itself. Refer to Inference Model.ipynb
 
 ### Classification Tree
@@ -29,8 +29,3 @@ There are two main sections of code:
 - The Feedback Algorithm will not use a ML-based approach, instead, will utilize the keypoints drawn by YOLOv7 to compare angles and relative positioning between joints.
   - Correct joint positioning will be hard coded, with an acceptable and unacceptable range.
 The feedback functions are based on a calculated angle (degrees) between three joint coordinates 
-
-# Submissions
-My work has been submitted to the following:
-- 2024 IEEE 6th International Conference on Artificial Intelligence Circuits and Systems (AICAS) [Conference Paper]
-- 2024 IEEE Southwest Symposium on Image Analysis and Interpretation (SSIAI) [Conference Paper]
