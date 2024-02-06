@@ -10,8 +10,6 @@ for i in range(1):
     # Create a KFold object
     kf = KFold(n_splits=k, shuffle=True)
 
-    # Initialize lists to store training and validation results for each fold
-
     #model.summary()
 
     # Loop through each fold
@@ -73,7 +71,6 @@ def create_res_net():
                filters=num_filters,
                padding="same")(t)
     kernel_regularizer=l2(0.001)
-    #ernel_regularizer=l2(0.001)
     t = relu_bn(t)
     
     #2, 4, 4, 2
