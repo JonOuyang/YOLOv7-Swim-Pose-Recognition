@@ -6,7 +6,7 @@ Swim pose estimation and recognition is a challenging problem in Machine Learni
 #### NOTE: In swimming terms, "long axis strokes" refer to Freestyle and Backstroke; "short axis strokes" refer to Butterfly and Breastroke.
 
 ### Github Repository Notes:
-For now, some of the code will be stored as Jupyter Notebooks. This will be converted to raw Python (3.11) upon acceptance and publishing of papers in conference preceedings (found in IEEE Xplore)
+For now, some of the code will be stored as Jupyter Notebooks. This will be converted to raw Python (3.11) upon acceptance and publishing of papers in conference preceedings (found in IEEE Xplore).
 The YOLOv7 library is not included in source code and will require external installation. This may be changed in future versions of this repository.
 If one of the ipynb files (Jupyter Notebooks) get cut off or don't fully load, reload the page.
 
