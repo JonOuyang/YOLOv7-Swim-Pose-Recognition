@@ -1,16 +1,9 @@
-###Training with K-Folds
-# Define the number of folds (k)
-#model = create_res_net()
-#model = tf.keras.models.load_model('testModel65')
-
 for i in range(1):
 
-    k = 10  # For example, using 5-fold cross-validation
+    k = 10  # K fold (10 fold variation)
 
     # Create a KFold object
     kf = KFold(n_splits=k, shuffle=True)
-
-    #model.summary()
 
     # Loop through each fold
     for fold, (train_index, val_index) in enumerate(kf.split(x_test)):
@@ -18,7 +11,8 @@ for i in range(1):
         x_train_fold, x_val_fold = x_train[train_index], x_train[val_index]
         y_train_fold, y_val_fold = y_train[train_index], y_train[val_index]
 
-        """class_weights = {0: 1,
+        """ CLASS WEIGHTS WERE NOT HELPFUL
+        class_weights = {0: 1,
                         1: 10.,
                         2: 10,
                         3: 1}"""
@@ -94,7 +88,7 @@ def create_res_net():
     model.compile(
         #optimizer = Adam(learning_rate=0.0001),
         #optimizer = Adam(learning_rate=4e-7),
-        optimizer=Adam(learning_rate=3e-6),
+        optimizer=Adam(learning_rate=3e-6), #standard learning rate 3e-6 was used for all models
         #optimizer='adam',
         loss='categorical_crossentropy',
         metrics=['categorical_accuracy']
