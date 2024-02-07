@@ -4,6 +4,13 @@
 Swim pose estimation and recognition is a challenging problem in Machine Learning (ML) and Artificial Intelligence (AI) as the body of the swimmer is continuously submerged under the water. The objective of this paper is to enhance existing ML models for estimating swim poses and for recognizing strokes to aide swimmers in pursuing a more perfect technique. We developed a novel methodology augmenting raw video data and adjusting a YOLOv7 base model to enhance swim pose estimation. We found the standard multi-class classification Convolutional Neural Network (CNN) to be insufficient for stroke recognition due to the similarity between strokes, so we designed a hierarchical binary classification tree using multiple ensembles of dense neural networks (DNN), CNN, and residual network (ResNET) models. Through these optimizations, the confidence level of pose estimation has increased by over 30%, and the ensembles of our recognition model has achieved approximately 80% accuracy. Fine-tuning of our recognition models and research combining joint keypoint coordinates with angle measurements as inputs could further increase the accuracy of our models.
 
 #### NOTE: In swimming terms, "long axis strokes" refer to Freestyle and Backstroke; "short axis strokes" refer to Butterfly and Breastroke.
+
+###Github Repository Notes:
+For now, some of the code will be stored as Jupyter Notebooks. This will be converted to raw Python (3.11) upon acceptance and publishing of papers in conference preceedings (found in IEEE Xplore)
+The YOLOv7 library is not included in source code and will require external installation. This may be changed in future versions of this repository.
+If one of the ipynb files (Jupyter Notebooks) get cut off or don't fully load, reload the page.
+
+
 There are two main sections of code:
 ## 1. The Recognition Model
   - Three primary model architectures were tested on the initial dataset:
@@ -28,4 +35,4 @@ There are two main sections of code:
 ## 2. The Feedback Algorithm
 - The Feedback Algorithm will not use a ML-based approach, instead, will utilize the keypoints drawn by YOLOv7 to compare angles and relative positioning between joints.
   - Correct joint positioning will be hard coded, with an acceptable and unacceptable range.
-The feedback functions are based on a calculated angle (degrees) between three joint coordinates 
+The feedback functions are based on a calculated angle (degrees) between three joint coordinates
