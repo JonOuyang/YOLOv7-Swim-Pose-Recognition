@@ -13,7 +13,7 @@ The YOLOv7 library is not included in source code and will require external inst
 If one of the ipynb files (Jupyter Notebooks) get cut off or don't fully load, reload the page.
 
 
-There are two main sections of code:
+There are two main sections:
 ## 1. The Recognition Model
   - Three primary model architectures were tested on the initial dataset:
         - Deep 2D CNNs
