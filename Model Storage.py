@@ -550,7 +550,6 @@ def create_res_net():
         #optimizer = Adam(learning_rate=0.0001),
         #optimizer = Adam(learning_rate=4e-7),
         optimizer=Adam(learning_rate=3e-6),
-        #optimizer='adam',
         loss='categorical_crossentropy',
         metrics=['categorical_accuracy']
     )
