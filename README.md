@@ -18,7 +18,7 @@ There are two main sections:
   - Three primary model architectures were tested on the initial dataset:
         - Deep 2D CNNs
         - Deep 3D CNNs
-        - Dense Neural Networks (DNN)
+        - Multilayer Perceptron Networks (MLP)
         - ResNet with 2D Convolution layers
         - ResNet with 3D Convlution layers
     - 3 unique datasets have been created, all with roughly equal divisions in class.
