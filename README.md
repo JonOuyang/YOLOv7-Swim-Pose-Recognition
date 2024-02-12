@@ -16,8 +16,8 @@ If one of the ipynb files (Jupyter Notebooks) get cut off or don't fully load, r
 There are two main sections:
 ## 1. The Recognition Model
   - Three primary model architectures were tested on the initial dataset:
-        - Deep 2D CNNs
-        - Deep 3D CNNs
+        - 2D CNNs
+        - 3D CNNs (2D casted into 3D where third dimension represents left vs right)
         - Multilayer Perceptron Networks (MLP)
         - ResNet with 2D Convolution layers
         - ResNet with 3D Convlution layers
