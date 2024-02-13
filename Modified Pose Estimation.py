@@ -1,3 +1,5 @@
+#This is the pose estimation file to run (includes automatic rotation alg)
+
 import torch
 from torchvision import transforms
 
