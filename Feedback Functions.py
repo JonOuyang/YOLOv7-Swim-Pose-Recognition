@@ -75,7 +75,6 @@ class freestyle:
         #looks at angle of shoulder to hip to knee to check if hips are sinking too low in water
         return 0 if not ((130 < angle3pt(data[0], data[6], data[8] < 230)) or (130 < angle3pt(data[1], data[7], data[9]) < 230)) else 1
 
-
 class backstroke:
     def kneeAngle(data):
         return 0 if ((70 < angle3pt(data[6], data[8], data[10]) < 290) or (90 < angle3pt(data[11], data[9], data[7]) < 270)) else 1
@@ -83,8 +82,6 @@ class backstroke:
         return 0 if not ((130 < angle3pt(data[0], data[6], data[8] < 230)) or (130 < angle3pt(data[1], data[7], data[9]) < 230)) else 1
     def straightArm(data):
         return 1 if ((170 < angle3pt(data[0], data[2], data[4]) < 190) or (170 < angle3pt(data[1], data[3], data[5]) < 190)) else  0 
-
-
 
 class butterfly:
     def elbowDrop(data):
@@ -95,8 +92,7 @@ class butterfly:
         return 0 if min(data[0][1], data[1][1]) < min(data[6][1], data[7][1]) else 1
     def legsTogether(data):
         return 0 if not ((30 < angle3pt(data[8], data[6], data[9]) < 330) or (30 < angle3pt(data[8], data[7], data[9]) < 330)) else 1
-
-
+      
 class breastroke:
     def noKick(data):
         return 0 if ((70 < angle3pt(data[6], data[8], data[10]) < 290) or (90 < angle3pt(data[11], data[9], data[7]) < 270)) else 1
