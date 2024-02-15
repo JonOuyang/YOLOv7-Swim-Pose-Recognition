@@ -19,8 +19,6 @@ skel5 = np.load()
 
 skel4 = np.concatenate((skel4, skel4, skel4))
 skel5 = np.concatenate((skel5, skel5, skel5))
-print(skel0.shape)
-
 
 label0 = np.full((skel0.shape[0], 1), 0)
 label1 = np.full((skel1.shape[0], 1), 0)
