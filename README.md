@@ -37,4 +37,4 @@ There are two main sections:
 ## 2. The Feedback Algorithm
 - The Feedback Algorithm will not use a ML-based approach, instead, will utilize the keypoints drawn by YOLOv7 to compare angles and relative positioning between joints.
   - Correct joint positioning will be hard coded, with an acceptable and unacceptable range.
-The feedback functions are based on a calculated angle (degrees) between three joint coordinates
+- The feedback functions are based on a calculated angle (degrees) between three joint coordinates
