@@ -10,7 +10,6 @@ import matplotlib.pyplot as plt
 import cv2
 import numpy as np
 fc = 1
-#na = np.empty((1, 51))
 na = []
 kk=[]
 c=0
@@ -21,13 +20,11 @@ def load_model():
     model = torch.load('yolov7-w6-pose.pt', map_location=device)['model']
     # Put in inference mode
     model.float().eval()
-
     if torch.cuda.is_available():
         # half() turns predictions into float16 tensors
         # which significantly lowers inference time
         model.half().to(device)
     return model
-
 model = load_model()
 
 def run_inference(image):
@@ -128,23 +125,13 @@ def pose_estimation_video(filename):
             break
 
         if cv2.waitKey(10) & 0xFF == ord('q'):
-            """p = np.array(na[-1])
-            p = np.reshape(p, (17, 3))
-            g = np.array(kk[-1])
-            g = np.reshape(g, (17, 2))
-            print(p)
-            print("-=-=-=-=-=-=-=-=-=")
-            print(g)
-            print(c)"""
             break
-            
     cap.release()
     out.release()
     cv2.destroyAllWindows()
 
 
-
-video = "C:/Users/jonso/OneDrive/Desktop/Dive Training Data 2.mp4"
+video = ""
 pose_estimation_video(video)
 
 na = np.array(na)
@@ -197,28 +184,17 @@ def preprocess(videoPath, savePath):
     skelData = skelData.reshape(skelData.shape[0], 17, 2)
     print(skelData.shape)
     print(f'{c} total empty frames')
-    #print(na)
     print(skelData[0])
     np.save(savePath, skelData)
 
 print(f'{c} frames of empty data')
 
+
+
 import matplotlib.pyplot as plt
 matplotlib.use('TkAgg')
 
 bins = [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1]
-"""cArrays = [conf0, conf1, conf2, conf3, conf4, conf5, conf6, conf7, conf8, conf9, conf10, conf11, conf12, conf13, conf14, conf15, conf16]
-c = 0
-for i in cArrays:
-    fig, ax = plt.subplots(figsize = (10, 7))
-    ax.hist(i, bins = bins)
-    ax.set_xlabel("Confidence Levels in %")
-    ax.set_ylabel("Number of measurements in region")
-    plt.title(f'graph {c}')
-    c+=1
-    plt.show()"""
-
-
 
 totalConf = np.concatenate((conf0, conf1, conf2, conf3, conf4, conf5, conf6, conf7, conf8, conf9, conf10, conf11, conf12, conf13, conf14, conf15, conf16))
 fig, ax = plt.subplots(figsize = (10, 7))
@@ -228,12 +204,9 @@ ax.set_ylabel("Number of Predictions")
 plt.title(f'All Combined')
 plt.show()
 
-
-
 totalConf = np.concatenate((conf5, conf6, conf7, conf8, conf9, conf10, conf11, conf12, conf13, conf14, conf15, conf16))
 fig, ax = plt.subplots(figsize = (10, 7))
 ax.hist(totalConf, bins = bins)
-#ax.set_ylim([0, 10000])
 ax.set_ylim([0, 15000])
 ax.set_xlabel("Confidence Levels of Predictions")
 ax.set_ylabel("Number of Predictions")
