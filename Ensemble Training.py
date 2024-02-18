@@ -17,14 +17,9 @@ from tensorflow.keras.callbacks import ModelCheckpoint
 from tensorflow.keras.initializers import glorot_uniform
 from tensorflow.keras.initializers import he_normal
 
-
-
-
-
 import sklearn
 from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import KFold
-
 
 import datetime
 import os
@@ -41,12 +36,9 @@ from sklearn.metrics import mean_squared_error
 from sklearn.ensemble import RandomForestRegressor
 import xgboost as xgb
 from sklearn.linear_model import LinearRegression
-
-
 from sklearn.ensemble import VotingClassifier
 
 num_classes=4
-
 x_train = np.load('x_train.npy')
 y_train = np.load('y_train.npy')
 x_test = np.load('x2_test.npy')
@@ -54,11 +46,6 @@ y_test = np.load('y2_test.npy')
 
 #y_train = keras.utils.to_categorical(y_train, num_classes)
 #y_test = keras.utils.to_categorical(y_test, num_classes)
-
-
-
-
-# Assuming you have already trained models named model_1, model_2, model_3, model_4, and model_5
 
 from sklearn.base import BaseEstimator, ClassifierMixin
 
