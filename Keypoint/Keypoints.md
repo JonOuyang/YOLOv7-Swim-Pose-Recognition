@@ -2,7 +2,7 @@
 
 YOLOv7 Pose Estimation will return an array of 56 coordinates. The first 5 coordinates are information relating to the bounding box and its confidence. That information is irrelevant to this project. The next 51 arrays are information about the actual joints.
 
-The information is split into groups of 3. The first number represents x coordinate, the second number represents y coordinate, the third number representes confidence level in position of that joint. (x, y, conf)
+The information is split into groups of 3. The first number represents x coordinate, the second number represents y coordinate, the third number representes confidence level in position of that joint. (x, y, conf). For a visual digram of joint keypoints look at the [Visual.png file](Visual.png)
 
 ### Original order of the joints (by index)
 0. nose
