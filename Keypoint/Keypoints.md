@@ -4,7 +4,7 @@ YOLOv7 Pose Estimation will return an array of 56 coordinates. The first 5 coord
 
 The information is split into groups of 3. The first number represents x coordinate, the second number represents y coordinate, the third number representes confidence level in position of that joint. (x, y, conf)
 
-# The order of the joints (by index) are:
+# Original order of the joints (by index)
 0. nose
 1. left eye (right for viewer)
 2. right eye (left for viewer)
