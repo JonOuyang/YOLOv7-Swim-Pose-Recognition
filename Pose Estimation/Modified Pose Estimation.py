@@ -79,17 +79,10 @@ def draw_keypoints(output, image):
     nimg = image[0].permute(1, 2, 0) * 255
     nimg = nimg.cpu().numpy().astype(np.uint8)
     nimg = cv2.cvtColor(nimg, cv2.COLOR_RGB2BGR)
-
-    
     
     for idx in range(output.shape[0]):
         plot_skeleton_kpts(nimg, output[idx, 7:].T, 3)
-    
-    
-        
     return nimg
-
-
 
 
 nc = 0
@@ -114,10 +107,11 @@ def swimPose_estimate(filename, savepath):
         c=0
         poseH(filename, "none", i*32)
         #print(f'Original data: {c} empty frames')
-
         cap.release()
         cv2.destroyAllWindows()
-        
+        #the below code was an older version of my algorithm that basically only rotated if a certain number of frames were empty (no keypoints).
+        #However, I realized that there's pretty much no benefit of that and you might as well just force a rotation no matter what (even if all keypoints are detected)
+        #since there's literally no downside
         """if c > 2:
             fc = 0
             c=0
@@ -157,6 +151,7 @@ def swimPose_estimate(filename, savepath):
                 fa.extend(rotate(z, 0))
                 #print(v)"""
         #Perm Rotations
+        #(new algorithm)
         fc = 0
         c=0
         v=0
@@ -205,19 +200,13 @@ def swimPose_estimate(filename, savepath):
     cv2.destroyAllWindows()
 
 
-
-
 def poseH(filename, rotation, currentFrame):
     global fc, c, t, nK, lK, na
-    #cv2.destroyAllWindows()
-
     cap = cv2.VideoCapture(filename)
     # VideoWriter for saving the video
     fourcc = cv2.VideoWriter_fourcc(*'MP4V')
     out = cv2.VideoWriter('Free_Skel.mp4', fourcc, 30.0, (int(cap.get(3)), int(cap.get(4))))
-    
     cap.set(cv2.CAP_PROP_POS_FRAMES, currentFrame)
-    
     while fc < 32 and cap.isOpened():
         (ret, frame) = cap.read()
         if ret == True:
@@ -251,8 +240,6 @@ def poseH(filename, rotation, currentFrame):
     cv2.destroyAllWindows()
 
 
-
-
 def rotate(coordinates, ang):
     #coordinates=np.reshape(coordinates, (coordinates.shape[0], 24))
     ###if clockwise, (1280-y, original x coordinate) & if counterclockwise, (y, 720-original x)
@@ -267,9 +254,6 @@ def rotate(coordinates, ang):
         rotated_coordinates.append(in_r)
     return rotated_coordinates
 
-
-
-%%time
 video = "Testing Sample 2.mp4"
 path = 'test.npy'
 swimPose_estimate(video, path)
