@@ -7,8 +7,19 @@ Swim pose estimation and recognition is a challenging problem in Machine Learnin
 
 # Github Repository Notes:
 THIS REPOSITORY IS NOT MEANT TO BE CLONED. YOU MUST INSTALL THE LIBRARIES YOURSELF, INCLUDING YOLO POSE ESTIMATION
-Libraries:
-- YOLOv7 (NOTE: during the duration of the research YOLOv7 was the most recent version available. However, YOLOv8 was released in the month following its completion, so if you would like to upgrade the YOLO version you may have to research the implementation separately. Besides the [YOLOv7 Pose](YOLOv7 Pose.py) file everything should work the same since they are not reliant on YOLO
+###Libraries Required:
+(NOTE: since this project was highly experimental, not all of the libraries imported in the file were used)
+- YOLOv7 (NOTE: during the duration of the research YOLOv7 was the most recent version available. However, YOLOv8 was released in the month following its completion, so if you would like to upgrade the YOLO version you may have to research the implementation separately. Besides the [Yolov7 Pose](YOLOv7 Pose.py) file everything should work the same since they are not reliant on YOLO. Also, importing YOLO should import a lot of the 
+- Numpy
+- Tensorflow (model training)
+- sklearn
+- matplotlib
+- cv2
+
+## [Keypoint Folder](Keypoint)
+This folder contains details on the exact indices of each joint keypoint that is returned from the pose estimation algorithm. For some reason, when you google this information there's a lot of contraditing info and diagrams so for your convenience, I've verified these keypoints myself. There is also a [visual diagram](Visual.png) for them.
+
+## [Model Training](Model Training)
 
 
 For now, some of the code will be stored as Jupyter Notebooks. This will be converted to raw Python code upon acceptance and publishing of papers in conference preceedings (found in IEEE Xplore).
