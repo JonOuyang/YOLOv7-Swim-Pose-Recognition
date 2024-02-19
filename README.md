@@ -20,8 +20,7 @@ THIS REPOSITORY IS NOT MEANT TO BE CLONED. YOU MUST INSTALL THE LIBRARIES YOURSE
 This folder contains details on the exact indices of each joint keypoint that is returned from the pose estimation algorithm. For some reason, when you google this information there's a lot of contraditing info and diagrams so for your convenience, I've verified these keypoints myself. There is also a [visual diagram](Visual.png) for them.
 
 ## [Models]
-This folder contains all of the files for building and training the neural networks. 
-- The main model training is done in the [Base Model Training](Model Training/Base Model Training.py) file. Sorry about all of the messy code.
+This folder contains all of the files for building and training the neural networks. See 
 
 For now, some of the code will be stored as Jupyter Notebooks. This will be converted to raw Python code upon acceptance and publishing of papers in conference preceedings (found in IEEE Xplore).
 
