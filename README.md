@@ -3,7 +3,7 @@
 #### Abstract:
 Swim pose estimation and recognition is a challenging problem in Machine Learning (ML) and Artificial Intelligence (AI) as the body of the swimmer is continuously submerged under the water. The objective of this paper is to enhance existing ML models for estimating swim poses and for recognizing strokes to aide swimmers in pursuing a more perfect technique. We developed a novel methodology augmenting raw video data and adjusting a YOLOv7 base model to enhance swim pose estimation. We found the standard multi-class classification Convolutional Neural Network (CNN) to be insufficient for stroke recognition due to the similarity between strokes, so we designed a hierarchical binary classification tree using multiple ensembles of multilayer perceptron (MLP), CNN, and residual network (ResNET) models. Through these optimizations, the confidence level of pose estimation has increased by over 30%, and the ensembles of our recognition model has achieved approximately 80% accuracy. Fine-tuning of our recognition models and research combining joint keypoint coordinates with angle measurements as inputs could further increase the accuracy of our models.
 
-#### NOTE: In swimming terms, "long axis strokes" refer to Freestyle and Backstroke; "short axis strokes" refer to Butterfly and Breastroke.
+NOTE: In swimming terms, "long axis strokes" refer to Freestyle and Backstroke; "short axis strokes" refer to Butterfly and Breastroke.
 
 # Github Repository Notes:
 THIS REPOSITORY IS NOT MEANT TO BE CLONED. YOU MUST INSTALL THE LIBRARIES YOURSELF, INCLUDING YOLO POSE ESTIMATION
