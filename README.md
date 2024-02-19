@@ -20,16 +20,16 @@ THIS REPOSITORY IS NOT MEANT TO BE CLONED. YOU MUST INSTALL THE LIBRARIES YOURSE
 This folder contains details on the exact indices of each joint keypoint that is returned from the pose estimation algorithm. For some reason, when you google this information there's a lot of contraditing info and diagrams so for your convenience, I've verified these keypoints myself. There is also a [visual diagram](Visual.png) for them.
 
 ## [Models]
-This folder contains all of the files for building and training the neural networks. See 
-
-For now, some of the code will be stored as Jupyter Notebooks. This will be converted to raw Python code upon acceptance and publishing of papers in conference preceedings (found in IEEE Xplore).
-
-The YOLOv7 library is not included in source code and will require external installation. This may be changed in future versions of this repository.
-
+This folder contains all of the files for building and training the neural networks. See the README file in the Model Training folder for more info.
 If one of the ipynb files (Jupyter Notebooks) get cut off or don't fully load, reload the page.
 
+## Pose Estimation
+This folder contains 3 files. 
+1. YOLOv7 Pose.py - This is the original pose estimation model that I referenced. Requires YOLOv7 to be installed on your local machine. There might be some small bugs in that file since I modified it a bit in the github repo.
+2. Modified Pose Estimation.py - This is the pose estimation model that I modified from the original. It includes the automatic rotation algorithm and some nice print statements to track progress.
+3. Paper Data.py - This is almost the exact same thing as Modified Pose Estimation.py, but it includes more data collection. It collects data from the original (unrotated) video pose estimation and data from the new rotated video pose estimation. It generates graphs at the end, which is what I used to make the charts that are included in my paper. Useful for writing my paper, irrelevant for the actual development. 
 
-There are two main sections:
+# Overview
 ## 1. The Recognition Model
   - Three primary model architectures were tested on the initial dataset:
         - 2D CNNs
