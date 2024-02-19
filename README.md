@@ -19,9 +19,10 @@ THIS REPOSITORY IS NOT MEANT TO BE CLONED. YOU MUST INSTALL THE LIBRARIES YOURSE
 ## [Keypoint Folder](Keypoint)
 This folder contains details on the exact indices of each joint keypoint that is returned from the pose estimation algorithm. For some reason, when you google this information there's a lot of contraditing info and diagrams so for your convenience, I've verified these keypoints myself. There is also a [visual diagram](Visual.png) for them.
 
-## [Model Training](Model Training)
+## [Models]
 This folder contains all of the files for building and training the neural networks. 
-- 
+- [Ensemble Training](Ensemble Training.py) - I'm honestly not sure what this file is
+- [Hierarchical Models](Hierarchical Models.ipynb) - 
 
 For now, some of the code will be stored as Jupyter Notebooks. This will be converted to raw Python code upon acceptance and publishing of papers in conference preceedings (found in IEEE Xplore).
 
