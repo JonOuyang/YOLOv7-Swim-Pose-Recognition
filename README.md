@@ -29,6 +29,11 @@ This folder contains 3 files.
 2. Modified Pose Estimation.py - This is the pose estimation model that I modified from the original. It includes the automatic rotation algorithm and some nice print statements to track progress.
 3. Paper Data.py - This is almost the exact same thing as Modified Pose Estimation.py, but it includes more data collection. It collects data from the original (unrotated) video pose estimation and data from the new rotated video pose estimation. It generates graphs at the end, which is what I used to make the charts that are included in my paper. Useful for writing my paper, irrelevant for the actual development. 
 
+## Other
+- The Main.ipynb file is the entire project put together, in theory it should work.
+- Feedback Functions.py contains some basic functions that compare the angles and gives feedback on swim technique.
+- Spare Parts.py are random parts that I didn't want to keep in my main files because it would just make things messy. So they're stored in here.
+
 # Overview
 ## 1. The Recognition Model
   - Three primary model architectures were tested on the initial dataset:
