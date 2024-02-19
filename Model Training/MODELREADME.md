@@ -9,6 +9,3 @@ The preprocessing just batched the data into groups of 32 (frames) and applied a
 
 ### Model Storage
 I didn't want to make my main files too messsy with model architectures commented out so I put them all in a separate file. There should be a couple comments lying around describing some observations for each model.
-
-### Inference Model
-
