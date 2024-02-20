@@ -12,6 +12,21 @@ import statistics
 
 import math
 
+"""
+I'm so sorry about the ambiguous variable names. I didn't make proper plans to publish my code for others to read.
+fc - frame count
+na - new array?
+actualKp - actual key point (array)
+c - idk
+lK - something keypoint
+nK - nose keypoint
+la - something array
+fullArray - takes the batches of frames and combines them into a single array
+initialArray - for storing initial values with unaugmented data
+batchArray - stores new values with augmented data in batch and appends to full array
+tc - total count?
+"""
+
 fc = 1
 na = []
 actualKp = []
