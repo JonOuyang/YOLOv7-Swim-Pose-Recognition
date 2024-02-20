@@ -270,6 +270,7 @@ video = "C:/Users/jonso/OneDrive/Desktop/Breast Training Data 2.mp4"
 path = 'nt.npy'
 swimPose_estimate(video, path)
 
+#the following conf0-16 is for the new augmented data values to plot
 conf0 = []
 conf1 = []
 conf2 = []
@@ -348,6 +349,7 @@ conf14i = []
 conf15i = []
 conf16i = []
 
+#conf0i-16i is for initial values plotting
 initialArray = np.array(initialArray)
 for t in initialArray:
     conf0i.append(t[2])
