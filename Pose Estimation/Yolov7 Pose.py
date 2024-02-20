@@ -82,8 +82,6 @@ def pose_estimation_video(filename):
         (ret, frame) = cap.read()
         if ret == True:
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-            #frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
-            #frame = cv2.rotate(frame, cv2.ROTATE_90_COUNTERCLOCKWISE)
             output, frame = run_inference(frame)
             frame = draw_keypoints(output, frame)
             fc += 1 
