@@ -26,7 +26,7 @@ import math
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
- 
+
 # importing machine learning models for prediction
 from sklearn.ensemble import RandomForestRegressor
 import xgboost as xgb
@@ -97,11 +97,7 @@ class breastroke:
     def noKick(data):
         return 0 if ((70 < angle3pt(data[6], data[8], data[10]) < 290) or (90 < angle3pt(data[11], data[9], data[7]) < 270)) else 1
 
-
-
-
-
-
+#e1-e(i) represents error # __
 if class==0:
     e1 = 0
     e2 = 0
