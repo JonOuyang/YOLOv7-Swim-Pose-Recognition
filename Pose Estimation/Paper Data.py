@@ -88,17 +88,9 @@ def draw_keypoints(output, image):
         #appends all hip x coords
         lK.append(t[18]) #array t is unsorted, the x values is every other starting at index 0 and y values every other starting at 1
         #index 22 gives the x coordinate for right hip joint
-        #EXPERIMENTAL ADJUSTMENTS TO REMOVE NULL COORDINATES (Further testing must be performed to see threshold value)
-        """for i in range(0, len(t), 3):
-            g = t[i:i+3]
-            if g[2] <= 0.20:
-                t[i] = 0
-                t[i+1] = 0
-                v+=1
-                e+=1"""
-        #t = t[::3] cuts every third element (confidence level)
         
         t = [x for i, x in enumerate(t) if (i+1)%3 != 0]
+        #cuts confidence level from array
         na.append(t)
     except:
         c += 1
