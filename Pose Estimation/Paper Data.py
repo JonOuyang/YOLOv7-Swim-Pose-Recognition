@@ -103,8 +103,6 @@ def draw_keypoints(output, image):
     for idx in range(output.shape[0]):
         plot_skeleton_kpts(nimg, output[idx, 7:].T, 3)
     
-    
-        
     return nimg
 
 nc = 0
