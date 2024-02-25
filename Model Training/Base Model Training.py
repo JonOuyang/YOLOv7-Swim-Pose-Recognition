@@ -40,11 +40,6 @@ if device_name == '':
     device_name = '/CPU:0'
 print("TensorFlow is using:", device_name)
 os.environ['TF_FORCE_GPU_ALLOW_GROWTH'] = 'true'
-"""physical_devices = tf.config.experimental.list_physical_devices('GPU')
-if len(physical_devices) > 0:
-    tf.config.experimental.set_memory_growth(physical_devices[0], True)"""
-
-
 
 
 num_classes = 2
