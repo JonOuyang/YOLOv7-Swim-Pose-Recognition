@@ -9,7 +9,7 @@ NOTE: In swimming terms, "long axis strokes" refer to Freestyle and Backstroke; 
 THIS REPOSITORY IS NOT MEANT TO BE CLONED. YOU MUST INSTALL THE LIBRARIES YOURSELF, INCLUDING YOLO POSE ESTIMATION
 ### Libraries Required:
 (NOTE: since this project was highly experimental, not all of the libraries imported in the file were used)
-- YOLOv7 (NOTE: during the duration of the research YOLOv7 was the most recent version available. However, YOLOv8 was released in the month following its completion, so if you would like to upgrade the YOLO version you may have to research the implementation separately. Besides the [Yolov7 Pose](YOLOv7 Pose.py) file everything should work the same since they are not reliant on YOLO. Also, importing YOLO should import a lot of the 
+- YOLOv7 (NOTE: during the duration of the research YOLOv7 was the most recent version available. However, YOLOv8 was released in the month following its completion, so if you would like to upgrade the YOLO version you may have to research the implementation separately. Besides the Yolov7 Pose file everything should work the same since they are not reliant on YOLO. Also, importing YOLO should import a lot of the 
 - Numpy
 - Tensorflow (model training)
 - sklearn
