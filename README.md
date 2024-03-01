@@ -24,7 +24,6 @@ This folder contains all of the files for building and training the neural netwo
 If one of the ipynb files (Jupyter Notebooks) get cut off or don't fully load, reload the page.
 
 ## Pose Estimation
-This folder contains 3 files. 
 1. YOLOv7 Pose.py - This is the original pose estimation model that I referenced. Requires YOLOv7 to be installed on your local machine. There might be some small bugs in that file since I modified it a bit in the github repo.
 2. Modified Pose Estimation.py - This is the pose estimation model that I modified from the original. It includes the automatic rotation algorithm and some nice print statements to track progress.
 3. Paper Data.py - This is almost the exact same thing as Modified Pose Estimation.py, but it includes more data collection. It collects data from the original (unrotated) video pose estimation and data from the new rotated video pose estimation. It generates graphs at the end, which is what I used to make the charts that are included in my paper. Useful for writing my paper, irrelevant for the actual development. 
