@@ -1,3 +1,4 @@
+#YOLO uses PyTorch for model
 import torch
 from torchvision import transforms
 
