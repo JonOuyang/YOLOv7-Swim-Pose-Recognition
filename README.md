@@ -45,7 +45,7 @@ If one of the ipynb files (Jupyter Notebooks) get cut off or don't fully load, r
     - The dataset includes 6 classes: Freestyle, Butterfly, Breaststroke, Backstroke, Underwater (Dolphin/Breastroke), and Diving
     - Frame batches of 32, 64, 128 were tested
     - 12 joint coordinate keypoints are used, all head keypoints are excluded through feature extraction. Encountered issues with head keypoints interfering with model accuracies.
-    *More details can be found in the actual code itself. Refer to Inference Model.ipynb
+    *More details can be found in the actual code itself.
 
 ### Classification Tree
 1. The Recognition Tree consists of 2 primary layers. At the top layer, the input in form (1, 32, 12, 3) is fed into a binary classification hard voting ensemble, where 5 models guess whether the class is long axis vs short axis stroke, each guess counting as a single unweighted "vote". The majority of votes represents the final class that is guessed.
