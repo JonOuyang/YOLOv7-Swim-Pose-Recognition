@@ -62,7 +62,7 @@ def draw_keypoints(output, image):
         kk.append(z)
         
     except:
-        c += 1
+        c += 1    #add 1 to empty frame number
     nimg = image[0].permute(1, 2, 0) * 255
     nimg = nimg.cpu().numpy().astype(np.uint8)
     nimg = cv2.cvtColor(nimg, cv2.COLOR_RGB2BGR)
@@ -73,33 +73,33 @@ def draw_keypoints(output, image):
 
 def pose_estimation_video(filename):
     global fc, g
-    cap = cv2.VideoCapture(filename)
-    totalFrames = math.floor(int(cap.get(cv2.CAP_PROP_FRAME_COUNT)))
+    cap = cv2.VideoCapture(filename)    #it's standard convention to call the video file "cap" when using cv2
+    totalFrames = math.floor(int(cap.get(cv2.CAP_PROP_FRAME_COUNT)))    #get the number of frames in video
     print(f'Total Frame count: {totalFrames}')    # VideoWriter for saving the video
-    fourcc = cv2.VideoWriter_fourcc(*'MP4V')
+    fourcc = cv2.VideoWriter_fourcc(*'MP4V')    #video output type 
     out = cv2.VideoWriter('t2.mp4', fourcc, 30.0, (int(cap.get(3)), int(cap.get(4))))
     while cap.isOpened():
         (ret, frame) = cap.read()
         if ret == True:
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-            output, frame = run_inference(frame)
-            frame = draw_keypoints(output, frame)
-            fc += 1 
-            frame = cv2.resize(frame, (int(cap.get(3)), int(cap.get(4))))
-            frame = cv2.resize(frame,(1280,720),fx=0,fy=0, interpolation = cv2.INTER_CUBIC)
+            output, frame = run_inference(frame)    #run model using this frame as input, predict joint coordinate keypoints
+            frame = draw_keypoints(output, frame)    #take the predicted coordinates and map them onto the image
+            fc += 1     #add 1 to frame count
+            frame = cv2.resize(frame, (int(cap.get(3)), int(cap.get(4))))    
+            frame = cv2.resize(frame,(1280,720),fx=0,fy=0, interpolation = cv2.INTER_CUBIC)    #resize frame (the interpolation was part of the reference code)
             out.write(frame)
-            cv2.imshow('Pose estimation', frame)
+            cv2.imshow('Pose estimation', frame)    #display frame on a new window (.imshow will run for every single frame. your framerate should be about 10-20fps i think?)
         else:
             break
 
-        if cv2.waitKey(10) & 0xFF == ord('q'):
+        if cv2.waitKey(10) & 0xFF == ord('q'):    #This is supposed to stop the entire program if you press 'q', but it doesn't work
             break
-    cap.release()
-    out.release()
-    cv2.destroyAllWindows()
+    cap.release()    #algorithm finish, disband variable
+    out.release()    #algorithm finish, disband variable
+    cv2.destroyAllWindows()    #close window the video was playing on
 
-video = "file path"
-pose_estimation_video(video)
+videoPath = "file path"    #put whatever file path you want to save the video to
+#pose_estimation_video(video)
 
 def preprocess(videoPath, savePath):
     global fc, c, na, skelData
