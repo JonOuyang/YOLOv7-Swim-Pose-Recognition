@@ -10,10 +10,10 @@ import matplotlib
 import matplotlib.pyplot as plt
 import cv2
 import numpy as np
-fc = 1
-na = []
-kk=[]
-c=0
+fc = 1    #frame count
+na = []    #final coordinate array (with confidence levels)
+kk=[]    #final coordinate array (with confidence levels removed
+c=0    #number of empty frames (no keypoints detected)
 #confidence trackers
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
@@ -26,7 +26,7 @@ def load_model():
         # which significantly lowers inference time
         model.half().to(device)
     return model
-model = load_model()
+model = load_model()    #load model weights
 
 def run_inference(image):
     # Resize and pad image
@@ -52,14 +52,13 @@ def draw_keypoints(output, image):
     with torch.no_grad():
         output = output_to_keypoint(output)
         #print(f'Frame Number: {fc}; Data Size: {output.shape}')
-    singleSkel = []
     try:
         t = output[0] #retrieves only first skeleton data
         t = t[-51:] #retrieves last 51 elements
         #t = t[::3] cuts every third element (confidence level)
         na.append(t)
         #append confidence levels respectively
-        z= [x for i, x in enumerate(t) if (i+1)%3 != 0]
+        z= [x for i, x in enumerate(t) if (i+1)%3 != 0]    #cuts every third element (confidence level)
         kk.append(z)
         
     except:
@@ -106,13 +105,14 @@ def preprocess(videoPath, savePath):
     global fc, c, na, skelData
     c=0
     video = videoPath
-    na = []
+    na = []    #clears array
+    #I didn't do anything with the array containing coordinate confidence. If you want to do something with that array, the array name is "kk"
     pose_estimation_video(video)
-    skelData = np.array(na)
-    skelData = skelData.reshape(skelData.shape[0], 17, 2)
+    skelData = np.array(na)    #convert to numpy array for faster loading (your computer might literally crash if you don't convert to numpy)
+    skelData = skelData.reshape(skelData.shape[0], 17, 2)    #reshape array so that they look like (x, y) coordinates
     print(skelData.shape)
     print(f'{c} total empty frames')
     print(skelData[0])
-    np.save(savePath, skelData)
+    np.save(savePath, skelData)    #save to path
 
 print(f'{c} frames of empty data')
