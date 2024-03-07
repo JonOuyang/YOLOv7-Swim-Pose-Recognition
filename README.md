@@ -44,7 +44,7 @@ If one of the ipynb files (Jupyter Notebooks) get cut off or don't fully load, r
     - 3 unique datasets have been created, all with roughly equal divisions in class.
     - The dataset includes 6 classes: Freestyle, Butterfly, Breaststroke, Backstroke, Underwater (Dolphin/Breastroke), and Diving
     - Frame batches of 32, 64, 128 were tested
-    - 12 joint coordinate keypoints are used, all head keypoints are excluded through feature extraction. Encountered issues with head keypoints interfering with model accuracies.
+    - 12 joint coordinate keypoints are used, all head keypoints are excluded through feature extraction. Encountered issues with head keypoints interfering with model accuracies, so head keypoints were removed through feature extraction.
     *More details can be found in the actual code itself.
 
 ### Classification Tree
