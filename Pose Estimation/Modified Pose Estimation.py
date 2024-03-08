@@ -71,8 +71,7 @@ def draw_keypoints(output, image):
                 t[i+1] = 0
                 v+=1
                 e+=1
-        #t = t[::3] cuts every third element (confidence level)
-        t = [x for i, x in enumerate(t) if (i+1)%3 != 0]
+        t = [x for i, x in enumerate(t) if (i+1)%3 != 0]    #keypoint array without confidence levels
         na.append(t)
     except:
         c += 1
