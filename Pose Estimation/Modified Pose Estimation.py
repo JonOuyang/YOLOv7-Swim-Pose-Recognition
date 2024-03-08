@@ -105,85 +105,33 @@ def swimPose_estimate(filename, savepath):
         nK = []
         lK = []
         c=0
+        v=0
         poseH(filename, "none", i*32)
         #print(f'Original data: {c} empty frames')
         cap.release()
         cv2.destroyAllWindows()
-        #the below code was an older version of my algorithm that basically only rotated if a certain number of frames were empty (no keypoints).
-        #However, I realized that there's pretty much no benefit of that and you might as well just force a rotation no matter what (even if all keypoints are detected)
-        #since there's literally no downside
-        """if c > 2:
-            fc = 0
-            c=0
-            v=0
-            if statistics.median(nK) > statistics.median(lK):
-                na = []
-                v=0
-                #print("needs counterclockwise rotation")
-                poseH(filename, "cc", i*32)
-                #print("transformation completed")
-                print(f'Counterclockwise rotation; {c} empty frames')
-                if c <= 5:
-                    z = np.array(na)
-                    z = np.reshape(z, (z.shape[0], 12, 2))
-                    fa.extend(rotate(z, (-90)))
-                    #print(v)
-                else:
-                    print("too many missing frames, batch discarded")
-            else:
-                na = []
-                #print("needs clockwise rotation")
-                poseH(filename, "c", i*32)
-                #print("transformation completed")
-                print(f'Clockwise rotation; {c} empty frames')
-                if c <= 5:
-                    z = np.array(na)
-                    z = np.reshape(z, (z.shape[0], 12, 2))
-                    fa.extend(rotate(z, 90))
-                    #print(v)
-                else:
-                    print("too many missing frames, batch discarded")
-            else:
-                print("no change necessary")
-                z = np.array(na)
-                z = np.reshape(z, (z.shape[0], 12, 2))
-                #print(z.shape)
-                fa.extend(rotate(z, 0))
-                #print(v)"""
-        #Perm Rotations
-        #(new algorithm)
-        fc = 0
-        c=0
-        v=0
-        if statistics.median(nK) > statistics.median(lK):
+
+        if statistics.median(nK) > statistics.median(lK):    #compares median values of x coordinates of hips and shoulders
             na = []
             v=0
-            #print("needs counterclockwise rotation")
-            poseH(filename, "cc", i*32)
-            #print("transformation completed")
-            #print(f'Counterclockwise rotation; {c} empty frames')
-            if c <= 5:
+            poseH(filename, "cc", i*32)    #counterclockwise rotation
+            if c <= 5:    #if there are less than 5 empty frames, append 
                 z = np.array(na)
                 z = np.reshape(z, (z.shape[0], 12, 2))
                 fa.extend(rotate(z, (-90)))
-                #print(v)
-            else:
+            else:    #otherwise, discard
                 print("too many missing frames, batch discarded")
         else:
             na = []
-            #print("needs clockwise rotation")
-            poseH(filename, "c", i*32)
-            #print("transformation completed")
-            #print(f'Clockwise rotation; {c} empty frames')
+            poseH(filename, "c", i*32)    #clockwise rotation
             if c <= 5:
                 z = np.array(na)
                 z = np.reshape(z, (z.shape[0], 12, 2))
                 fa.extend(rotate(z, 90))
-                #print(v)
             else:
                 print("too many missing frames, batch discarded")
-            
-        i += 1
+                
+        i += 1    #batch counter (batches of __ frames)
         print(f'batch {i} complete')
         
     print("=======================================================")
