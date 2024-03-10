@@ -8,4 +8,4 @@ I assembled the models into the tree as outlined in my paper. I left this file a
 The preprocessing just batched the data into groups of 32 (frames) and applied augmentations like shuffling, mirror, and noise injections. If you're interested, there's code for batching into groups of 64 and 128 frames in a different Github repo from a paper I worked on before this one (https://github.com/JonOuyang/CNN-Exercise-Recognition/blob/main/preprocessing.py)
 
 ### Model Storage
-I didn't want to make my main files too messsy with model architectures commented out so I put them all in a separate file. There should be a couple comments lying around describing some observations for each model.
+I didn't want to make my main files too messsy with model architectures commented out so I put them all in a separate file. There should be a couple comments lying around describing some observations for each model. Again, refer to main paper and main file for which models to use. Not all of the models in the storage were effective.
