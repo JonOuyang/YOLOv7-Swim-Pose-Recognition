@@ -119,8 +119,6 @@ model = create_res_net()
 
     # After all folds are done, you can analyze the performance using the stored lists.
     # For example, you can compute the average and standard deviation of train and validation metrics.
-
-%%time
 accuracyArray = []
 loops = 0
 while True:
