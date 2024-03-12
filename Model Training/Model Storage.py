@@ -166,9 +166,6 @@ while True:
             kf = KFold(n_splits=k, shuffle=True)
 
             # Initialize lists to store training and validation results for each fold
-
-            #model.summary()
-
             # Loop through each fold
             for fold, (train_index, val_index) in enumerate(kf.split(x_test)):
                 print(f"Training fold {fold + 1}")
