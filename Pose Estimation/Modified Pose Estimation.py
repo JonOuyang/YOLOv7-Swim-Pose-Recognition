@@ -201,6 +201,7 @@ def rotate(coordinates, ang):
         rotated_coordinates.append(in_r)
     return rotated_coordinates
 
+#replace this with whatever your video path and save path is
 video = "Testing Sample 2.mp4"
 path = 'test.npy'
 swimPose_estimate(video, path)
