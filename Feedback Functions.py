@@ -1,37 +1,11 @@
 import numpy as np
 import tensorflow as tf
-from tensorflow import keras
-from tensorflow.keras import layers, regularizers, optimizers
-from tensorflow.keras.layers import Input, Conv2D, ReLU, BatchNormalization,\
-                                    Add, AveragePooling2D, MaxPooling2D, Flatten, Dense, Dropout
-from tensorflow.keras.regularizers import l1, l2
-from tensorflow.keras.models import Model
-from tensorflow.keras.callbacks import ReduceLROnPlateau
-from tensorflow.keras.callbacks import Callback
-from tensorflow import Tensor
-from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.callbacks import ModelCheckpoint
-from tensorflow.keras.initializers import glorot_uniform
-from tensorflow.keras.initializers import he_normal
-
-import sklearn
-from sklearn.metrics import confusion_matrix
-from sklearn.model_selection import KFold
 
 import datetime
 import os
 import matplotlib.pyplot as plt
 
 import math
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error
-
-# importing machine learning models for prediction
-from sklearn.ensemble import RandomForestRegressor
-import xgboost as xgb
-from sklearn.linear_model import LinearRegression
-from sklearn.ensemble import VotingClassifier
 
 num_classes=4
 
@@ -42,7 +16,6 @@ y_test = np.load('y2_test.npy')
 
 #y_train = keras.utils.to_categorical(y_train, num_classes)
 #y_test = keras.utils.to_categorical(y_test, num_classes)
-
 
 
 def angle3pt(a, b, c):
