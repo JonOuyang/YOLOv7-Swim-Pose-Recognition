@@ -14,22 +14,17 @@ from tensorflow.keras.callbacks import ModelCheckpoint
 from tensorflow.keras.initializers import glorot_uniform
 from tensorflow.keras.initializers import he_normal
 
-from IPython.display import clear_output
-
 import sklearn
 from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import KFold
-
 
 import datetime
 import os
 import matplotlib.pyplot as plt
 
-#import sklearn
-#from sklearn.metrics import confusion_matrix
 import math
 
-#The following code section was for ensuring that my Jupyter Notebook was running on GPU instead of CPU for faster training
+#The following code section was for ensuring that Jupyter Notebook was running on GPU instead of CPU for faster training
 
 # Check if GPU is available and visible to TensorFlow
 gpu_available = tf.config.list_physical_devices('GPU')
