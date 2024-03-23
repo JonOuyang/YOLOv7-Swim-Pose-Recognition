@@ -15,7 +15,7 @@ import math
 """
 I'm so sorry about the ambiguous variable names. I didn't make proper plans to publish my code for others to read.
 fc - frame count
-na - new array?
+na - new array
 actualKp - actual key point (array)
 c - idk
 lK - something keypoint
