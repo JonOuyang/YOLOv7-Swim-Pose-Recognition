@@ -149,7 +149,7 @@ def create_res_net():
 model = create_res_net()
 
 #Working
-#odel.compile(loss="categorical_crossentropy", optimizer = Adam(learning_rate=3e-5), metrics=[tf.keras.metrics.PrecisionAtRecall(recall=0.8)])
+#model.compile(loss="categorical_crossentropy", optimizer = Adam(learning_rate=3e-5), metrics=[tf.keras.metrics.PrecisionAtRecall(recall=0.8)])
 
 
 model.compile(loss="categorical_crossentropy", optimizer = Adam(learning_rate=1e-5), metrics="accuracy")
