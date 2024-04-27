@@ -31,7 +31,7 @@ If one of the ipynb files (Jupyter Notebooks) get cut off or don't fully load, r
 3. Paper Data.py - This is almost the exact same thing as Modified Pose Estimation.py, but it includes more data collection. It collects data from the original (unrotated) video pose estimation and data from the new rotated video pose estimation. It generates graphs at the end, which is what I used to make the charts that are included in my paper. Useful for writing my paper, irrelevant for the actual development. 
 
 ## Other
-- The Main.ipynb file is the entire project put together, in theory it should work.
+- The Main.ipynb file is the entire project put together, built off of files and networks from other files.
 - Feedback Functions.py contains some basic functions that compare the angles and gives feedback on swim technique.
 - Spare Parts.py are random parts that I didn't want to keep in my main files because it would just make things messy. So they're stored in here.
 
