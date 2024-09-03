@@ -8,15 +8,7 @@ Swim pose estimation and recognition is a challenging problem in Machine Learnin
 NOTE: In swimming terms, "long axis strokes" refer to Freestyle and Backstroke; "short axis strokes" refer to Butterfly and Breastroke
 
 # Github Repository Notes:
-**THIS REPOSITORY IS NOT MEANT TO BE CLONED. YOU MUST INSTALL THE LIBRARIES YOURSELF, INCLUDING YOLO POSE ESTIMATION**
-### Libraries Required:
-(NOTE: since this project was highly experimental, not all of the libraries imported in the file were used)
-- YOLOv7 (NOTE: during the duration of the research YOLOv7 was the most recent version available. However, YOLOv8 was released in the month following its completion, so if you would like to upgrade the YOLO version you may have to research the implementation separately. Besides the Yolov7 Pose file everything should work the same since they are not reliant on YOLO. Also, importing YOLO should import a lot of the 
-- Numpy
-- Tensorflow (model training)
-- sklearn
-- matplotlib
-- cv2
+**THIS REPOSITORY IS NOT MEANT TO BE CLONED. YOU MUST INSTALL THE LIBRARIES YOURSELF, INCLUDING YOLOv7 POSE ESTIMATION**
 
 ## Keypoint
 This folder contains details on the exact indices of each joint keypoint that is returned from the pose estimation algorithm. For some reason, when you google this information there's a lot of contraditing info and diagrams so for your convenience, I've verified these keypoints myself. There is also a [visual diagram](Visual.png) for them.
